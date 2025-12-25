@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEMANTIQ</title>
+
+  <!-- Doppio One -->
+  <link href="https://fonts.googleapis.com/css2?family=Doppio+One&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <div class="center">
+      <img src="assets/logo.png" alt="logo" class="logo">
+      <img src="assets/text.png" alt="title" class="title">
+
+      <p class="subtitle">
+        Guess today’s word in 6 tries<br>
+        with hot or cold feedback.
+      </p>
+
+      <a href="main.html">
+        <img src="assets/button.png" alt="play" class="play-btn">
+      </a>
+    </div>
+
+    <div class="footer">
+  <span id="today-date"></span><br>
+  Made by Hans Ewaldo Kristiawan
+</div>
+
+
+  </div>
+<script>
+  const date = new Date();
+
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit'
+  };
+
+  document.getElementById('today-date').textContent =
+    date.toLocaleDateString('en-US', options);
+</script>
+
+</body>
+</html>

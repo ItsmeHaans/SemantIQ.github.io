@@ -1,0 +1,452 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Doppio One', sans-serif;
+}
+
+
+@font-face {
+  font-family: 'Hellbone';
+  src: url('../assets/fonts/Hellbone-Demo.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  color: #FD6F00;
+}
+@font-face {
+  font-family: 'Frozenland';
+  src: url('../assets/fonts/FROZENLAND .otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  color: #FD6F00;
+}
+
+body {
+  background: #FBFBFB;
+  height: 100vh;
+  overflow-y : hidden;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid #000;
+}
+
+.title-img {
+  height: 60px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.icons img {
+  height: 26px;
+  margin-left: 18px;
+  cursor: pointer;
+}
+
+/* MAIN */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theme {
+  margin: 26px 0;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: -10px;
+  margin-top: -5px;
+}
+
+.theme-logo {
+  height: 70px;
+  margin-left: -10px;
+}
+
+/* BOARD */
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 26px;
+}
+
+.box {
+  width: 500px;
+  height: 60px;
+  border: 2px solid #A5A5A5;
+  border-radius: 10px;
+  font-size: 48px;
+  text-align: center;
+  background: white;
+
+
+}
+
+/* KEYBOARD */
+.keyboard {
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.key {
+  background: #E6E6E6;
+  border-radius: 10px;
+  padding: 14px 12px;
+  margin: 0 4px;
+  min-width: 40px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
+  transition: 0.1s;
+}
+
+.key:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+}
+
+.key.wide {
+  min-width: 70px;
+}
+/* DEFAULT */
+.box {
+  transition: background 0.4s, color 0.4s;
+}
+
+/* HEAT LEVEL BACKGROUND */
+.box.freezing { background-image: url('../assets/freezing.png'); }
+.box.cold     { background-image: url('../assets/cold.png'); }
+.box.windy    { background-image: url('../assets/windy.png'); }
+.box.normal   { background-image: url('../assets/normal.png'); }
+.box.warm     { background-image: url('../assets/warm.png'); }
+.box.hot      { background-image: url('../assets/hot.png'); }
+.box.burn     { background-image: url('../assets/burn.png'); }
+.box.found     { background-image: url('../assets/found.png'); }
+
+.box {
+  background-size: cover;
+  background-position: center;
+}
+/* ABOVE NORMAL */
+.box.warm,
+.box.hot,
+.box.burn {
+  font-family: 'Hellbone', sans-serif;
+  color: #FD6F00;
+  -webkit-text-stroke-width: 2px; /* Sets the outline width */
+  -webkit-text-stroke-color: #C81D01;
+  size: 55;
+}
+
+/* BELOW NORMAL */
+.box.freezing,
+.box.cold,
+.box.windy {
+  font-family: 'Frozenland', sans-serif;
+  color: #C1DEFA;
+  size 55;
+  -webkit-text-stroke-width: 2px; /* Sets the outline width */
+  -webkit-text-stroke-color: #286DD9;
+}
+.box.freezing,
+.box.cold,
+.box.windy {
+  line-height: 1.3;
+  padding-top: 10px;
+}
+
+/* NORMAL */
+.box.normal {
+  color: #1B5740;
+}
+@keyframes flame {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(-40px) scale(1.3); opacity: 0; }
+}
+
+.box.found {
+  /* BOX background */
+  background-image: url('../assets/found.png');
+  background-size: cover;
+  background-position: center;
+
+  /* TEXT */
+  font-family: 'Hellbone', sans-serif;
+  font-size: 48px;
+
+  color: transparent; /* fallback */
+
+  /* gradient text via mask */
+  background-color: transparent;
+
+
+  border: none;
+}
+
+
+
+.fire {
+  position: absolute;
+  bottom: -10px;
+
+  width: 20px;
+  height: 30px;
+  background: orange;
+  border-radius: 50%;
+  animation: flame 0.8s infinite;
+}
+@keyframes snow {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(40px); opacity: 0; }
+}
+
+.snow {
+  position: absolute;
+  top: -10px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: snow 1.2s infinite;
+}
+@keyframes leaf {
+  0% { transform: rotate(0deg) translateY(0); }
+  100% { transform: rotate(360deg) translateY(20px); }
+}
+
+.leaf {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: green;
+  animation: leaf 1.2s infinite;
+}
+
+/* ======================
+   TOAST NOTIFICATION
+====================== */
+#toast {
+  position: fixed;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #D9D9D9;
+  color: #000;
+  padding: 18px 28px;
+  border-radius: 14px;
+  text-align: center;
+  font-family: 'Doppio One', sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+#toast b {
+  font-size: 26px;
+}
+
+#toast small {
+  display: block;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+/* SHOW STATE */
+#toast.show {
+  top: 40px;
+  opacity: 1;
+}
+
+/* EXIT ANIMATION */
+#toast.hide {
+  animation: toast-out 0.6s ease forwards;
+}
+
+@keyframes toast-out {
+  0% {
+    top: 40px;
+    opacity: 1;
+  }
+  100% {
+    top: -120px;
+    opacity: 0;
+  }
+}
+
+/* ======================
+   SLIDE UP ANIMATION
+====================== */
+.box {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.box.slide-out {
+  transform: translateY(-70px);
+  opacity: 0;
+}
+
+.box.slide-in {
+  transform: translateY(70px);
+  opacity: 0;
+  animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* ======================
+   MOBILE RESPONSIVENESS
+   ====================== */
+@media (max-width: 600px) {
+
+  /* 1. Header & Title */
+  header {
+    padding: 10px 15px;
+  }
+
+  .title-img {
+    height: 40px; /* Scaled down from 60px */
+  }
+
+  .icons img {
+    height: 20px;
+    margin-left: 12px;
+  }
+
+  /* 2. Theme Section */
+  .theme {
+    font-size: 24px; /* Scaled down from 36px */
+    margin: 15px 0;
+  }
+
+  .theme-logo {
+    height: 50px; /* Scaled down from 70px */
+  }
+
+  /* 3. The Board & Boxes */
+  .board {
+    width: 90%; /* Let the board be fluid */
+    gap: 5px;
+  }
+
+  .box {
+    width: 100%; /* Overrides the 500px width */
+    max-width: 350px; /* Prevents it from getting too wide on phablets */
+    height: 50px;
+    font-size: 32px; /* Smaller text to fit the box */
+    border-radius: 8px;
+  }
+
+  /* Adjusted line height for special fonts on mobile */
+  .box.freezing, .box.cold, .box.windy {
+    padding-top: 5px;
+    line-height: 1.1;
+  }
+
+  /* 4. Keyboard */
+  .keyboard {
+    width: 100%;
+    padding: 0 5px;
+    margin-top: 5px;
+  }
+
+  .row {
+    margin-bottom: 6px;
+  }
+
+  .key {
+    padding: 12px 0; /* Vertical padding only */
+    margin: 0 2px;
+    min-width: 30px; /* Narrower keys */
+    flex: 1; /* Allows keys to grow/shrink equally */
+    font-size: 12px;
+    border-radius: 6px;
+  }
+
+  .key.wide {
+    min-width: 50px;
+    flex: 1.5; /* Enter/Delete stay slightly larger */
+  }
+
+  /* 5. Toast Notification */
+  #toast {
+    width: 85%; /* Don't let it touch the screen edges */
+    padding: 12px 20px;
+  }
+
+  #toast b {
+    font-size: 20px;
+  }
+
+  #toast small {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* ... previous header/box styles ... */
+
+  /* 4. Keyboard Resizing (Approx 50% of original desktop size) */
+  .keyboard {
+    width: 100%;
+    margin-top: 0px;
+
+    /* scale(0.5) makes it exactly half the original size,
+       which is 2/3 of the previous 0.75 version */
+    transform: scale(0.5);
+
+    transform-origin: top center;
+
+    /* Because the keyboard is now much shorter, we use a large
+       negative margin to pull the bottom of the page up */
+    margin-bottom: -120px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    /* Expanding width to 200% to offset the 0.5 scale and keep keys centered */
+    width: 200%;
+    position: relative;
+    left: -50%;
+  }
+
+  .key {
+    background: #E6E6E6;
+    border-radius: 12px;
+    padding: 18px 15px; /* Slightly thicker padding to keep keys tap-friendly at small scale */
+    margin: 0 4px;
+    min-width: 45px;
+    font-size: 22px; /* Increased font size so it's still readable after being halved */
+    font-weight: bold;
+  }
+
+  .key.wide {
+    min-width: 90px;
+  }
+  }
+
+  .key.wide {
+    min-width: 65px;
+  }
+}
+
